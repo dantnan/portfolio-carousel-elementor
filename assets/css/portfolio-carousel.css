@@ -51,7 +51,7 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    color: #000!important;
+    color: #000 !important;
     padding: 10px;
     font-size: 14px;
     line-height: 1.4;
@@ -84,14 +84,14 @@
     overflow: hidden;
     flex-grow: 0;
     margin: 0px !important;
-    opacity: 1!important;
+    opacity: 1 !important;
 }
 
 /* Right Thumbnail Layout */
 .thumbnail-position-right .portfolio-carousel-container {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    gap: 20px;
     align-items: flex-start;
 }
 
@@ -117,11 +117,16 @@
 }
 
 .thumbnail-position-right .portfolio-thumbs-swiper .swiper-slide {
+    width: 120px !important;
     margin-bottom: 10px !important;
     padding: 0;
     cursor: pointer;
     overflow: hidden;
-    opacity: 1!important;
+    opacity: 1 !important;
+}
+
+.thumbnail-position-bottom .portfolio-carousel-thumb img {
+    object-fit: contain;
 }
 
 /* Navigation Arrows */
@@ -161,8 +166,10 @@
 .portfolio-carousel-thumb img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain;
     display: block;
+    object-fit: cover;
+    width: 120px !important;
+    height: 120px !important;
 }
 
 
@@ -176,7 +183,7 @@
     .thumbnail-position-right .portfolio-thumbs-swiper {
         width: 100%;
     }
-    
+
     .thumbnail-position-bottom .portfolio-thumbs-swiper .swiper-slide {
         width: calc(100% / 2) !important;
     }
