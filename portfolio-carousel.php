@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Portfolio Carousel for Elementor
  * Description: A beautiful portfolio carousel widget for Elementor with thumbnails gallery feature.
- * Version:     1.0.0
+ * Version:     1.0.1
  * Author:      Antnan Mpekir
  * Author URI:  https://antnan.com
  * Text Domain: portfolio-carousel

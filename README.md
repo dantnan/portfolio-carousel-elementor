@@ -9,7 +9,10 @@ Portfolio Carousel for Elementor adds a powerful and easy-to-use portfolio galle
 ### Key Features
 
 - Responsive image carousel with thumbnail navigation
+- Multiple thumbnail layout options (bottom or right position)
+- Optional navigation arrows for the main carousel
 - Grid layout for thumbnails that automatically adjusts based on screen size
+- Auto-height adjustment when using right thumbnail layout
 - Smooth transition animations
 - Fully customizable through Elementor interface
 - Compatible with Elementor's responsive design controls
@@ -38,6 +41,8 @@ Portfolio Carousel for Elementor adds a powerful and easy-to-use portfolio galle
 ## Customization
 
 The widget provides numerous customization options:
+- Choose thumbnail position (bottom or right)
+- Enable/disable navigation arrows
 - Change the number of thumbnails per row (responsive)
 - Adjust spacing between thumbnails
 - Customize image sizes and proportions
@@ -45,6 +50,13 @@ The widget provides numerous customization options:
 - And much more!
 
 ## Changelog
+
+### 1.0.1
+- Added option to display thumbnails on the right side
+- Added navigation arrows option for the main carousel
+- Implemented auto-height feature for right thumbnail layout
+- Improved active thumbnail styling
+- Enhanced responsive layout for all screen sizes
 
 ### 1.0.0
 - Initial release
