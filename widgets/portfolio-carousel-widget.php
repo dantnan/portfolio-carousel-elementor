@@ -121,6 +121,32 @@ class Portfolio_Carousel_Widget extends \Elementor\Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'thumbnail_position',
+			[
+				'label' => esc_html__( 'Thumbnail Position', 'portfolio-carousel' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'default' => 'bottom',
+				'options' => [
+					'bottom' => esc_html__( 'Bottom', 'portfolio-carousel' ),
+					'right' => esc_html__( 'Right', 'portfolio-carousel' ),
+				],
+				'prefix_class' => 'thumbnail-position-',
+			]
+		);
+
+		$this->add_control(
+			'show_arrows',
+			[
+				'label' => esc_html__( 'Show Navigation Arrows', 'portfolio-carousel' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'default' => '',
+				'label_on' => esc_html__( 'Show', 'portfolio-carousel' ),
+				'label_off' => esc_html__( 'Hide', 'portfolio-carousel' ),
+				'return_value' => 'yes',
+			]
+		);
+
 		$this->add_responsive_control(
 			'thumb_columns',
 			[
@@ -343,8 +369,11 @@ class Portfolio_Carousel_Widget extends \Elementor\Widget_Base {
 		}
 
 		$unique_id = 'portfolio-carousel-' . $this->get_id();
+		$thumbnail_position = $settings['thumbnail_position'] ?? 'bottom';
+		$show_arrows = $settings['show_arrows'] === 'yes';
 
 		$this->add_render_attribute( 'carousel', 'class', 'portfolio-carousel-container' );
+		$this->add_render_attribute( 'carousel', 'class', 'thumbnail-position-' . $thumbnail_position );
 		$this->add_render_attribute( 'carousel', 'id', $unique_id );
 		
 		// Enqueue required assets
@@ -375,6 +404,11 @@ class Portfolio_Carousel_Widget extends \Elementor\Widget_Base {
 						</div>
 					<?php endforeach; ?>
 				</div>
+				
+				<?php if ( $show_arrows ) : ?>
+					<div class="swiper-button-next"></div>
+					<div class="swiper-button-prev"></div>
+				<?php endif; ?>
 			</div>
 			
 			<div class="portfolio-thumbs-swiper">
@@ -396,9 +430,13 @@ class Portfolio_Carousel_Widget extends \Elementor\Widget_Base {
 
 		<script>
 		jQuery(document).ready(function($) {
+			var thumbnailPosition = '<?php echo esc_js($thumbnail_position); ?>';
+			var autoHeight = thumbnailPosition === 'right';
+			
 			// Initialize main Swiper
 			var <?php echo $unique_id; ?>_main = new Swiper('#<?php echo $unique_id; ?> .portfolio-main-swiper', {
 				spaceBetween: 0,
+				autoHeight: autoHeight,
 				navigation: {
 					nextEl: '.swiper-button-next',
 					prevEl: '.swiper-button-prev',
@@ -440,7 +478,11 @@ class Portfolio_Carousel_Widget extends \Elementor\Widget_Base {
 	protected function content_template() {
 		?>
 		<# if ( settings.gallery.length ) { #>
-			<div class="portfolio-carousel-container elementor-editor-element-wrap">
+			<# 
+			var thumbnailPosition = settings.thumbnail_position || 'bottom';
+			var showArrows = settings.show_arrows === 'yes';
+			#>
+			<div class="portfolio-carousel-container elementor-editor-element-wrap thumbnail-position-{{ thumbnailPosition }}">
 				<div class="portfolio-main-swiper elementor-editor-main-swiper">
 					<div class="swiper-wrapper">
 						<# _.each( settings.gallery, function( item, index ) { #>
@@ -468,6 +510,11 @@ class Portfolio_Carousel_Widget extends \Elementor\Widget_Base {
 							</div>
 						<# }); #>
 					</div>
+					
+					<# if ( showArrows ) { #>
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+					<# } #>
 				</div>
 				
 				<div class="portfolio-thumbs-swiper">
